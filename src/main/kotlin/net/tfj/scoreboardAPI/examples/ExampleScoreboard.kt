@@ -1,4 +1,4 @@
-package net.tfj.scoreboardAPI
+package net.tfj.scoreboardAPI.examples
 
 import io.papermc.paper.scoreboard.numbers.NumberFormat
 import net.kyori.adventure.text.format.NamedTextColor

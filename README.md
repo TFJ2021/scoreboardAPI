@@ -21,7 +21,7 @@ simple trivia game or an intricate team-based RPG, this library has got you cove
 
 1. **Add JitPack as repository**
 
-```
+```groovy
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 
 2. **Add this api as compileOnly dependency**
 
-```
+```groovy
 dependencies {
     implementation("com.github.TFJ5183:scoreboardAPI:{Tag}")
 }
@@ -55,8 +55,8 @@ object ReadMeScoreboard : ScoreboardData(
     NumberFormat.styled(Style.style(NamedTextColor.DARK_GRAY)),
     listOf(
         StaticLineEntry("Welcome to My Server"),
-        DataLineEntry("Player count: ${Bukkit.getOnlinePlayers().size}/${Bukkit.getMaxPlayers()}"),
-        EmptyLine(),
+        DataLineEntry({ "Player count: ${Bukkit.getOnlinePlayers().size}/${Bukkit.getMaxPlayers()}" }, 10),
+        EmptyLine,
         AnimatedLineEntry(
             listOf(
                 { "0oo" },
@@ -96,10 +96,10 @@ fun join(event: PlayerJoinEvent) {
 
 The project uses the following dependencies with the specified versions, all of which have been tested and confirmed to work:
 
-- Java: 21.0.9 (SAP-MASCHINE)
-- Kotlin: 2.3.20-RC3
-- Gradle: 8.8.0
-- Paper API: 1.21.11-R0.1-SNAPSHOT
+- Java: `21.0.9 (SAP-MASCHINE)`
+- Kotlin: `2.3.20-RC3`
+- Gradle: `8.8.0`
+- Paper API: `1.21.11-R0.1-SNAPSHOT`
 
 ## Contributing
 

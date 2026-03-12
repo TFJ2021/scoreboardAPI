@@ -12,22 +12,29 @@ import org.bukkit.scoreboard.DisplaySlot
 import org.bukkit.scoreboard.Scoreboard
 import java.util.*
 
+/**
+ * Main Scoreboard management class
+ *
+ * @param plugin instance of [JavaPlugin]
+ * @param defaultBoard default [ScoreboardData]. This will not be applied automatically
+ * @param miniMessage optional [MiniMessage] instance. Falls back to miniMessage default
+ * @since 1.0
+ */
 class ScoreboardAPI(
-    val instance: JavaPlugin,
+    val plugin: JavaPlugin,
     val defaultBoard: ScoreboardData,
     val miniMessage: MiniMessage = MiniMessage.miniMessage()
 ) {
 
-    // Variables
-    private var map: HashMap<UUID, ScoreboardData> = hashMapOf()
-
+    // Static variables
     companion object {
-        lateinit var instance: ScoreboardAPI
+        private var map: HashMap<UUID, ScoreboardData> = hashMapOf()
+        lateinit var miniMessage: MiniMessage
     }
 
     // On class init
     init {
-        Companion.instance = this
+        Companion.miniMessage = this.miniMessage
         startUpdater()
     }
 
@@ -53,6 +60,7 @@ class ScoreboardAPI(
 
     /**
      * Gets [ScoreboardData]
+     *
      * @return possibly null [ScoreboardData] entity.
      * @since 1.0
      */
@@ -79,6 +87,7 @@ class ScoreboardAPI(
 
     /**
      * Applies [data] to specified [scoreboard] for specified [player]
+     *
      * @param player is required for data frames
      * @param forceUpdate if everything should be updated regardless of the update frame
      * @since 1.0
@@ -133,6 +142,7 @@ class ScoreboardAPI(
 
     /**
      * Turns line number to invisible entry name
+     *
      * @param line line number
      * @return paragraph + number or single letter
      * @since 1.0
@@ -143,6 +153,7 @@ class ScoreboardAPI(
 
     /**
      * Starts internal updater
+     *
      * @since 1.0
      */
     private fun startUpdater() {
@@ -159,7 +170,7 @@ class ScoreboardAPI(
                     applyData(player, player.scoreboard, data)
                 }
             }
-        }.runTaskTimer(instance, 0L, 1L)
+        }.runTaskTimer(plugin, 0L, 1L)
     }
 
 }

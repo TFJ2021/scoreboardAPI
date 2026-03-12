@@ -1,5 +1,7 @@
-package net.tfj.scoreboardAPI
+package net.tfj.scoreboardAPI.examples
 
+import net.tfj.scoreboardAPI.ScoreboardAPI
+import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -22,6 +24,7 @@ class Main : JavaPlugin() {
     }
 
     // On player join
+    @EventHandler
     fun join(event: PlayerJoinEvent) {
         scoreboardAPI.resetScoreboard(event.player)
     }
