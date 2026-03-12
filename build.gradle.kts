@@ -41,11 +41,6 @@ kotlin {
     }
 }
 
-// Task: build
-tasks.build {
-    dependsOn("shadowJar")
-}
-
 // TasK: process resources
 tasks.processResources {
     val props = mapOf("version" to version)
@@ -53,5 +48,15 @@ tasks.processResources {
     filteringCharset = "UTF-8"
     filesMatching("plugin.yml") {
         expand(props)
+    }
+}
+
+// Publishing
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            artifact(tasks.named("sourcesJar"))
+        }
     }
 }
