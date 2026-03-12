@@ -13,7 +13,7 @@ import org.bukkit.entity.Player
 data class StaticLineEntry(val line: String) : LineBaseEntry() {
 
     // Formats content once
-    val text = ScoreboardAPI.miniMessage.deserialize(line)
+    val text by lazy { ScoreboardAPI.miniMessage.deserialize(line) }
 
     // Returns the static text
     override fun getText(player: Player): Component = text
