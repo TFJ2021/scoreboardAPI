@@ -8,7 +8,7 @@ plugins {
 
 // Config
 group = "net.tfj"
-version = "1.1.4"
+version = "1.1.5"
 val targetJavaVersion = 21
 
 // Dependencies
@@ -56,7 +56,6 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-            artifact(tasks.named("sourcesJar"))
         }
     }
 }
